@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Subi, With Honesty ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Cursor glow + particle trail -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<canvas id="cursorParticles"></canvas>
+
+<!-- Global ambient particle canvas (petals, hearts, sparkles, fireflies, clouds) -->
+<canvas id="ambientCanvas"></canvas>
+
+<!-- ===================== LOADER ===================== -->
+<div class="loader" id="loader">
+  <div class="loader-clouds">
+    <span class="cloud c1"></span>
+    <span class="cloud c2"></span>
+    <span class="cloud c3"></span>
+  </div>
+  <div class="loader-center">
+    <div class="loader-heart">
+      <svg viewBox="0 0 100 90" class="heart-svg">
+        <path d="M50 85 C10 55 0 30 20 12 C35 -2 50 8 50 25 C50 8 65 -2 80 12 C100 30 90 55 50 85 Z"/>
+      </svg>
+    </div>
+    <p class="loader-text">opening a little envelope of feelings<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+  </div>
+  <div class="loader-petals" id="loaderPetals"></div>
+</div>
+
+<!-- ===================== SOUND TOGGLE (global) ===================== -->
+<button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">
+  <svg viewBox="0 0 24 24" class="icon-on"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 12c0-1.77-1-3.29-2.5-4v8c1.5-.71 2.5-2.23 2.5-4z"/><path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+  <svg viewBox="0 0 24 24" class="icon-off" style="display:none"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v1.8l2.5 2.5c0-.1.1-.2.1-.3zM19 12c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+</button>
+
+<!-- Nav dots -->
+<nav class="scene-nav" id="sceneNav"></nav>
+
+<main id="scenes">
+
+  <!-- ===================== SCENE 1 : OPENING ===================== -->
+  <section class="scene scene-1" id="scene1" data-title="Hello">
+    <div class="bg-gradient bg-1"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene1" data-expr="hopeful"></div>
+      <h1 class="reveal-heading">I have something to say to you, Subi <span class="heart-emoji">❤️</span></h1>
+      <p class="reveal-sub">Just a few quiet minutes, whenever you're ready.</p>
+      <button class="glow-btn" id="openHeartBtn">
+        <span>Open My Heart</span>
+        <span class="btn-shine"></span>
+      </button>
+    </div>
+    <div class="scroll-hint">scroll or tap to continue ↓</div>
+  </section>
+
+  <!-- ===================== SCENE 2 : ENVELOPE / LETTER ===================== -->
+  <section class="scene scene-2" id="scene2" data-title="The Letter">
+    <div class="bg-gradient bg-2"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene2" data-expr="nervous"></div>
+
+      <div class="envelope-stage" id="envelopeStage">
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="letter-paper" id="letterPaper">
+            <p class="letter-text" id="typewriterText"></p>
+          </div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-front"></div>
+          <div class="wax-seal">S</div>
+        </div>
+        <p class="envelope-hint" id="envelopeHint">tap the envelope to open it</p>
+      </div>
+
+      <button class="next-btn hidden" id="scene2Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 3 : APPRECIATION ===================== -->
+  <section class="scene scene-3" id="scene3" data-title="Thank You">
+    <div class="bg-gradient bg-3"></div>
+    <div class="flower-field" id="flowerField3"></div>
+    <div class="butterflies" id="butterflies3"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene3" data-expr="smile"></div>
+      <h2 class="scene-heading">Before anything else... thank you.</h2>
+      <div class="appreciation-cards">
+        <div class="app-card"><span class="app-icon">🌸</span><p>Thank you for reaching out, even after everything.</p></div>
+        <div class="app-card"><span class="app-icon">💌</span><p>Thank you for your kindness — it never went unnoticed.</p></div>
+        <div class="app-card"><span class="app-icon">⏳</span><p>Thank you for giving your time to something that mattered.</p></div>
+        <div class="app-card"><span class="app-icon">🕊️</span><p>Thank you for caring enough to message me at all.</p></div>
+        <div class="app-card"><span class="app-icon">🌷</span><p>I truly, honestly appreciate you. Just as you are.</p></div>
+      </div>
+      <button class="next-btn" id="scene3Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 4 : FLOWER / BOUQUET ===================== -->
+  <section class="scene scene-4" id="scene4" data-title="A Small Gift">
+    <div class="bg-gradient bg-4"></div>
+    <div class="garden-ground"></div>
+    <div class="scene-inner">
+      <h2 class="scene-heading">A little something, no strings attached.</h2>
+      <div class="garden-stage" id="gardenStage">
+        <div class="chibi-wrap chibi-walk" id="chibiWalk" data-expr="smile"></div>
+        <div class="bouquet-wrap" id="bouquetWrap">
+          <div class="bouquet" id="bouquet">💐</div>
+          <div class="bouquet-glow"></div>
+        </div>
+      </div>
+      <p class="garden-hint" id="garden-hint">tap the bouquet</p>
+      <p class="garden-message hidden" id="gardenMessage">"I just wanted to give you something beautiful today."</p>
+      <button class="next-btn hidden" id="scene4Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 5 : MINI GAME ===================== -->
+  <section class="scene scene-5" id="scene5" data-title="Let It Go">
+    <div class="bg-gradient bg-5"></div>
+    <div class="scene-inner">
+      <h2 class="scene-heading">Let's get rid of the bad feelings.</h2>
+      <p class="scene-sub">Tap the gloomy clouds — watch what they turn into.</p>
+
+      <div class="game-hud">
+        <div class="hud-item">Score: <span id="gameScore">0</span></div>
+        <div class="progress-track"><div class="progress-fill" id="gameProgress"></div></div>
+        <div class="hud-item"><span id="gameCloudsLeft">15</span> clouds left</div>
+      </div>
+
+      <div class="game-stage" id="gameStage">
+        <div class="chibi-wrap chibi-game" id="chibiGame" data-expr="smile"></div>
+      </div>
+
+      <button class="glow-btn small hidden" id="startGameBtn">Start</button>
+
+      <div class="game-victory hidden" id="gameVictory">
+        <p>I hope this made you smile even a little. 🌷</p>
+        <button class="next-btn" id="scene5Next">Continue <span>→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 6 : MEMORY GARDEN (STARS) ===================== -->
+  <section class="scene scene-6" id="scene6" data-title="Memory Garden">
+    <div class="bg-gradient bg-6"></div>
+    <div class="stars-layer" id="starsLayer"></div>
+    <div class="fireflies" id="fireflies6"></div>
+    <div class="lanterns" id="lanterns6"></div>
+    <div class="scene-inner">
+      <h2 class="scene-heading light">The Memory Garden</h2>
+      <p class="scene-sub light">Tap a star. Each one holds something true.</p>
+      <div class="star-modal hidden" id="starModal">
+        <p id="starModalText"></p>
+        <button id="starModalClose">close</button>
+      </div>
+      <p class="stars-progress" id="starsProgress">0 / 30 stars found</p>
+      <button class="next-btn hidden" id="scene6Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 7 : HEARTFELT LETTER ===================== -->
+  <section class="scene scene-7" id="scene7" data-title="Honestly">
+    <div class="bg-gradient bg-7"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene7" data-expr="sad"></div>
+      <div class="long-letter">
+        <p>Subi, I want to say this plainly, without hiding behind pretty words.</p>
+        <p>I made a mistake. Not a small, forgettable one — the kind that actually affected you, and I understand that now more clearly than I did before. I've spent real time thinking about what happened, not to make myself feel better about it, but to actually understand where I went wrong.</p>
+        <p>I'm not writing this to convince you of anything. I'm not asking you to forgive me, and I'm not asking you to come back to how things were. You don't owe me that, and I'd never want you to feel like you do.</p>
+        <p>What I do want is for you to know that I see it. I see how my actions could have made you feel unheard, or hurt, or like your trust was misplaced. That's on me, not on you.</p>
+        <p>You've always been someone thoughtful, kind, and genuine — the kind of person who shows up for people. I know that. I've always known that. And I'm sorry that any part of my behavior made you doubt whether that kindness was appreciated. It was. It is.</p>
+        <p>Whatever you decide to do with this — read it once and move on, or never think about it again — is completely okay. This isn't a request for anything. It's just the truth, finally said out loud.</p>
+        <p class="letter-closing">Thank you for taking the time to read this.<br>
+        No matter what you choose, I genuinely wish you happiness, peace, and countless reasons to smile.<br>
+        Take care, Subi.<br>
+        <span class="signature">— Shivam ❤️</span></p>
+      </div>
+      <button class="next-btn" id="scene7Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 8 : FINAL SCENE (SUNRISE) ===================== -->
+  <section class="scene scene-8" id="scene8" data-title="Thank You">
+    <div class="bg-gradient bg-8"></div>
+    <div class="sun" id="sun8"></div>
+    <div class="rainbow" id="rainbow8"></div>
+    <div class="birds" id="birds8"></div>
+    <div class="flower-field" id="flowerField8"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene8" data-expr="happy"></div>
+      <h1 class="big-thanks">Thank You <span class="heart-emoji">❤️</span></h1>
+      <p class="small-sub">I hope today brings you something to smile about.</p>
+      <button class="glow-btn" id="surpriseBtn">One Last Surprise</button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 9 : GIFT SURPRISE ===================== -->
+  <section class="scene scene-9" id="scene9" data-title="A Surprise">
+    <div class="bg-gradient bg-9"></div>
+    <canvas id="confettiCanvas"></canvas>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene9" id="chibiScene9" data-expr="smile"></div>
+      <div class="gift-box" id="giftBox">
+        <div class="gift-lid"></div>
+        <div class="gift-body"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-ribbon-h"></div>
+      </div>
+      <p class="gift-hint" id="giftHint">tap the gift</p>
+      <button class="next-btn hidden" id="scene9Next">Continue <span>→</span></button>
+    </div>
+  </section>
+
+  <!-- ===================== SCENE 10 : CREDITS ===================== -->
+  <section class="scene scene-10" id="scene10" data-title="Credits">
+    <div class="bg-gradient bg-10"></div>
+    <div class="scene-inner">
+      <div class="chibi-wrap chibi-scene10" data-expr="wave"></div>
+      <h2 class="credits-title">With warmth,</h2>
+      <p class="credits-text">No requests. No pressure. Just a genuine thank you for reading all the way to the end.</p>
+      <p class="credits-sign">Made with care, for Subi — by Shivam.</p>
+      <button class="restart-btn" id="restartBtn">↺ Read it again</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
